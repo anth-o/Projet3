@@ -1,4 +1,4 @@
-fetch("http://localhost:5678/api/categories") 
+fetch("http://localhost:5678/api/works") 
 .then(function(response) {
 	if(response.ok) {
 		return response.json();
@@ -43,14 +43,39 @@ fetch("http://localhost:5678/api/categories")
 
 .then(function(data) {
 	let categories = data;
-	categories.unshift({id: 0, name: "Tous"})
+	categories.unshift({id: 0, name: "Tous"});
 	console.log(categories);
-	// Boucle sur chaque catégorie
+	// Looping on each category
 	categories.forEach((category, index) => {
-		// Création de la balise <button>
-		let buttonElement = document.createElement("button")
+		// Creation <button> to filter
+		let buttonElement = document.createElement("button");
 		buttonElement.classList.add("work-filter");
 		buttonElement.classList.add("filters-design");
 		if(category.id === 0) buttonElement.classList.add("filter-active", "filter-all");
+		buttonElement.setAttribute("data-filter", category.id);
+		buttonElement.textContent = category.name;
 		
+		document.querySelector(".filters").appendChild(buttonElement);
+
+		buttonElement.addEventListener("click", function(event) {
+			event.preventDefault();
+
+			document.querySelectorAll(".work-filter").forEach((workFilter) => {
+                workFilter.classList.remove("filter-active");
+            });
+            event.target.classList.add("filter-active");
+
+			let categoryId = buttonElement.getAttribute("data-filter");
+			document.querySelectorAll(".work-item").forEach(workItem => {
+				workItem.style.display = "none";
+			});
+			document.querySelectorAll(`.work-item.category-id-${categoryId}`).forEach(workItem => {
+				workItem.style.display = "block";
+			});
+		});
+	});
+})
+.catch(function(err) {
+	console.log(err);
+});
 
