@@ -8,22 +8,28 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/a15c888155.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="./assets/index.js"></script>
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
+	<nav id="barre-edition" class="barre-edition-design">
 		<ul>
-			<li><a href="#portfolio">projets</a></li>
-			<li><a href="#contact">contact</a></li>
-			<li><a href="./login.html">login</a>
-				<a href="">logout</a></li>
-			<li><a href="https://instagram.com"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+			<li><i class="fa-sharp fa-regular fa-pen-to-square"></i>Mode édition</li>
 		</ul>
 	</nav>
-</header>
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="#portfolio">projets</a></li>
+				<li><a href="#contact">contact</a></li>
+				<li><a class="only-user" href="./login.html">login</a>
+					<a id="nav-logout" class="only-admin" href="">logout</a></li>
+				<li><a href="https://instagram.com"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+			</ul>
+		</nav>
+	</header>
 <main>
 	<section id="introduction">
 		<figure>
@@ -37,8 +43,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="filters"></div>
+		<div id="modal-admin" class="lien-modal-admin">
+			<h2>Mes Projets</h2>
+			<div>
+				<a id="update-works" class="only-admin lien-modal" href="#modal"><i class="fa-sharp fa-regular fa-pen-to-square"></i>modifier</a>
+			</div>
+		</div>
+		<div id="filters-container" class="filters"></div>
 		<div class="gallery"></div>
 	</section>
 	<section id="contact">
@@ -55,7 +66,6 @@
 		</form>
 	</section>
 </main>
-
 <footer>
 	<nav>
 		<ul>
@@ -63,5 +73,40 @@
 		</ul>
 	</nav>
 </footer>
+
+	<div id="modal" class="modal" aria-hidden="true" role="dialog">
+		<div id="modal1" class="modal-suppression-travaux modal-stop">
+			<a class="modal-xmark" href="#"><i class="fa-solid fa-xmark"></i></a>
+			<h3>Galerie photo</h3>
+			<div class="modal-gallery"></div>
+			<hr>
+			<button id="btn-ajout" class="ajout-photo">Ajouter une photo</button>
+		</div>
+		<div id="modal2" class="modal-ajout-travaux modal-stop">
+			<div class="container-xmark-and-arrow">
+				<a href="#" id="arrow-left"><i class="fa-solid fa-arrow-left"></i></a>
+				<a href="#" class="modal-xmark-ajout"><i class="fa-solid fa-xmark"></i></a>
+			</div>
+			<h3>Ajout photo</h3>
+			<form id="form-modal-ajout-photo" action="#" method="post">
+				<div id="container-photo" class="container-ajout-photo">
+					<i id="icon-img" class="fa-regular fa-image"></i>
+					<label id="btn-ajout-image" class="label-file" for="input-img">+ Ajouter photo</label>
+					<input id="input-img" class="input-file" type="file" accept="image/*, .jpg, .jpeg, .png" required>
+					<p id="text-taille-img">jpg, png : 4mo max</p>
+				</div>
+				<div class="container-titre-and-categorie">
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre" required>
+					<label for="categorie">Catégorie</label>
+					<select class="choix-categorie" id="input-categorie" required>
+						<option value=""></option>
+					</select>
+					<hr>
+					<input id="btn-envoie" type="submit" value="Valider">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

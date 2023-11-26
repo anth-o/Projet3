@@ -129,8 +129,8 @@ a {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -175,7 +175,7 @@ a {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"], .ajout-photo{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -192,6 +192,14 @@ footer nav ul {
 	margin: 2em
 }
 
+
+.only-user {
+	display:block;
+}
+
+.only-admin {
+	display:none;
+}
 
 /* FILTRES */
 
@@ -210,6 +218,7 @@ footer nav ul {
 	font-family: "Syne";
 	font-size: 16px;
 	margin-left: 10px;
+	cursor: pointer;
 }
 
 .filter-active{
@@ -217,7 +226,7 @@ footer nav ul {
 	color: white;
 }
 
-.filter-all {
+.filter-tous {
 	padding-left: 25px;
 	padding-right: 25px;
 }
@@ -259,7 +268,7 @@ footer nav ul {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#login form input[type="submit"]:hover{
+#login form input[type="submit"]:hover, .ajout-photo:hover{
 	background-color:#0E2F28;
 	cursor: pointer;
 }
@@ -271,4 +280,237 @@ footer nav ul {
 
 .typo-login {
 	font-weight: 700;
+}
+
+/***** CSS admin mode only *****/
+
+body.connected .only-user {
+	display:none;
+}
+
+body.connected .only-admin {
+	display:block;
+}
+
+
+/* MODE EDITION */
+
+.barre-edition-design {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	height: 60px;
+	background-color: #000000;
+	display: none;
+	color: white;
+}
+
+.barre-edition-design li {
+	padding-left: 10px;
+}
+
+.barre-edition-design i {
+	padding-right: 10px;
+	font-size: 16px;
+}
+
+.barre-edition-design a {
+	color: #FFFFFF;
+}
+
+.barre-edition-design .fa-pen-to-square {
+	color: white;
+}
+
+
+.lien-modal-admin {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
+.lien-modal i {
+	padding-right: 10px;
+	font-size: 20px;
+}
+
+
+
+/* MODAL */
+
+.modal {
+	position: fixed;
+	display: none;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-suppression-travaux {
+	width: 630px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+	height: 688px;
+	border-radius: 10px;
+	background-color: white;
+	display: block;
+}
+
+.modal-xmark {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 20px 20px 0 0;
+	font-size: 24px;
+}
+
+.modal h3 {
+	padding-top: 20px;
+	font-family: "Work Sans";
+	font-size: 26px;
+	text-align: center;
+}
+
+.modal-gallery {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 45px 90px 45px 100px;
+	gap: 30px 10px;
+}
+
+.modal-gallery figure {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-gallery img {
+	width: 77px;
+}
+
+hr {
+	margin: 0 105px;
+	border-top: 1px solid #B3B3B3;
+	border-bottom: 0; 
+	border-left: 0;
+	border-right: 0;
+}
+
+.ajout-photo{
+	display: flex;
+	justify-content: center;
+	padding: 10px 20px;
+	border: none;
+	width: 237px;
+}
+
+.icone-supp{
+	color: white;
+	background-color: #000000;
+	position: absolute;
+	font-size: 13px;
+	padding: 5px;
+	margin-left: 50px;
+	margin-top: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+
+.modal-ajout-travaux{
+	width: 630px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+	height: 688px;
+	border-radius: 10px;
+	background-color: white;
+	display: none;
+}
+
+.modal-ajout-travaux .container-xmark-and-arrow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 20px 20px 0 20px;
+	font-size: 24px;
+}
+
+.container-ajout-photo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px 0 19px 0;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	margin: 35px 105px 0;
+}
+
+.container-ajout-photo i {
+	color: #B9C5CC;
+	font-size: 68px;
+	padding-bottom: 10px;
+}
+
+.label-file {
+	background-color: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	padding: 10px 30px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.input-file {
+	display: none;
+}
+
+.container-ajout-photo p {
+	padding-top: 5px;
+	font-size: 10px;
+	color: #444444;
+}
+
+.container-titre-and-categorie {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding: 10px 105px 0 105px;
+}
+
+.container-titre-and-categorie input[type="text"], select {
+	height: 51px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+}
+
+.container-titre-and-categorie #titre, #categorie {
+	color: #444444;
+	font-weight: 500;
+}
+
+.container-titre-and-categorie label {
+	padding: 20px 0 10px 0;
+}
+
+.container-titre-and-categorie hr {
+	margin: 50px 0 20px;
+}
+
+.container-titre-and-categorie input[type="submit"] {
+	border-radius: 60px;
+	text-align: center;
+	padding: 10px;
+	border: none;
+	color: #FFFFFF;
+	font-style: normal;
+	font-weight: 700;
+	background-color: #A7A7A7;
 }
