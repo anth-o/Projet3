@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-
+// modal 
 fetch("http://localhost:5678/api/works") 
 .then(function(response) {
 	if(response.ok) {
@@ -188,7 +188,7 @@ fetch("http://localhost:5678/api/works")
 		imgElement.setAttribute("src", work.imageUrl);
 		imgElement.setAttribute("alt", work.title);
 		figureElement.appendChild(imgElement);
-		// Création de l"icône suppression
+		// Création de l'icône suppression
 		let suppElement = document.createElement("i");
 		suppElement.classList.add("fa-solid", "fa-trash-can", "icone-supp")
 		figureElement.appendChild(suppElement);
@@ -208,14 +208,14 @@ fetch("http://localhost:5678/api/works")
 					switch(response.status) {
 						case 500:
 						case 503:
-							alert("Comportement inattendu!");
+							alert("Comportement inattendu");
 						break;
 						case 401:
-							alert("Suppresion impossible!");
+							alert("Suppresion impossible");
 						break;
 						case 200:
 						case 204:
-							console.log("Projet supprimé.");
+							console.log("Projet supprimé");
 							// Suppression du projet sur la page
 							document.getElementById(`work-item-${work.id}`).remove();
 							console.log(`work-item-${work.id}`);
@@ -224,7 +224,7 @@ fetch("http://localhost:5678/api/works")
 							console.log(`work-item-modal-${work.id}`);
 						break;
 						default:
-							alert("Erreur inconnue!");
+							alert("Erreur inconnue");
 						break;
 					}
 				})
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		else {
 			if(fileInput.files.length > 0) {
-            	// Prévisualition de l"image
+            	// Prévisualition de l'image
 				let previsuElement = document.createElement("img");
 				previsuElement.setAttribute("id","input-img-preview");
 				previsuElement.src = URL.createObjectURL(fileInput.files[0]);
@@ -339,19 +339,19 @@ document.addEventListener("DOMContentLoaded", function() {
 			switch(response.status) {
 				case 500:
 				case 503:
-					alert("Erreur inattendue!");
+					alert("Erreur inattendue");
 				break;
 				case 400:
 				case 404:
-					alert("Impossible d'ajouter le nouveau projet!");
+					alert("Impossible d'ajouter le nouveau projet");
 				break;
 				case 200:
 				case 201:
-					console.log("Projet ajouté avec succés!");
+					console.log("Projet ajouté avec succés");
 					return response.json();
 				break;
 				default:
-					alert("Erreur inconnue!");
+					alert("Erreur inconnue");
 				break;
 			}
 		})
